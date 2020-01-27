@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Second Lab</title>
+</head>
+
+<body>
+
+  <section>
+    <h2>Fibonacci numbers</h2>
+    <input type="number" id="numberIn" placeholder="Check if Fibonacci">
+    <input type="number" id="nNumbersIn" placeholder="First n numbers" min="0">
+    <input type="number" id="intervalMinIn" placeholder="Interval min" min="0">
+    <input type="number" id="intervalMaxIn" placeholder="Interval max">
+    <button id="calculate">Calculate</button>
+  </section>
+
+  <section>
+    <ul id="results">
+      <li>Fibonacci numbers: <output id="fibonacciOut"></output></li>
+      <li>Is it Fibonacci number? <output id="isFibonacciOut"></output></li>
+      <li>All Fibonacci numbers from interval: <output id="intervalOut"></output></li>
+      <li>All prime Fibonacci numbers from interval: <output id="intervalPrimeOut"></output></li>
+    </ul>
+  </section>
+  <script src="js/lab2.js"></script>
+</body>
+
+</html>
