@@ -1,4 +1,4 @@
-class String {
+class CustomString {
   constructor(string) {
     this.string = string;
     this.allWords = this.string.split(' ');
@@ -26,16 +26,26 @@ class String {
     }
     return this.allWords;
   }
+
+  fileWordCount(input) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const lines = reader.result.split(/\W+/);
+      console.log(lines.length);
+    }
+    reader.readAsText(input.files[0]);
+  }
 }
 
-const input = document.getElementById('selectFile');
 
-input.addEventListener('change', function () {
-  console.log(input.files);
-  const reader = new FileReader();
-  reader.onload = () => {
-    const lines = reader.result.split(/\W+/);
-    console.log(lines.length);
+class FileString {
+  fileWordCount(input) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const lines = reader.result.split(/\W+/);
+      console.log(lines.length);
+    }
+    reader.readAsText(input.files[0]);
   }
-  reader.readAsText(input.files[0]);
-})
+
+}
