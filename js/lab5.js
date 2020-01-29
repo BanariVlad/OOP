@@ -19,13 +19,23 @@ class String {
   }
 
   deleteLongestWord(wordToDelete) {
-    for (let i = 0; i< this.allWords.length; i++) {
+    for (let i = 0; i < this.allWords.length; i++) {
       if (this.allWords[i] === wordToDelete) {
         delete this.allWords[i]
       }
     }
     return this.allWords;
   }
-  
 }
 
+const input = document.getElementById('selectFile');
+
+input.addEventListener('change', function () {
+  console.log(input.files);
+  const reader = new FileReader();
+  reader.onload = () => {
+    const lines = reader.result.split(/\W+/);
+    console.log(lines.length);
+  }
+  reader.readAsText(input.files[0]);
+})

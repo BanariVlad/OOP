@@ -53,3 +53,24 @@ section button {
 output {
   font-weight: 550;
 }
+
+#selectFile {
+  display: none;
+}
+
+label {
+  width: 300px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px dashed #666666;
+  color: #666666;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: .3s;
+}
+
+label:hover {
+  border: 1px solid #000;
+  color: #000;
+}
