@@ -20,11 +20,7 @@ class Fibonacci {
       }
       i++;
     }
-    if (find === false) {
-      return `${number} - Fibonacci number`;
-    } else {
-      return `${number} - not a Fibonacci number`;
-    }
+    return find;
   }
 
   intervalFibonacci(min, max) {
@@ -43,33 +39,39 @@ class Fibonacci {
     });
     //All Fibonacci Prime numbers from interval
     interval.forEach(index => {
-      if (this.isPerfectNumber(index) && interval.includes(index) === this.fibNumbers.includes(index)) {
+      if (this.isPrimeNumber(index) && interval.includes(index) === this.fibNumbers.includes(index)) {
         intervalFibonacciPrime.push(index);
       }
     });
-    return [intervalFibonacci, intervalFibonacciPrime];
+    return {
+      intervalFibonacci,
+      intervalFibonacciPrime
+    };
   }
 
-  isPerfectNumber(n) {
+  isPrimeNumber(n) {
     let divisors = new Array();
     for (let i = 0; i <= n; i++) {
       if (n % i === 0) {
         divisors.push(i);
       }
     }
-    return (divisors.length === 2 ? true : false);
+    return divisors.length === 2;
   }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('calculate').addEventListener('click', function() {
+  document.getElementById('calculate').addEventListener('click', function () {
     const fibonacci = new Fibonacci();
     fibonacci.fibonacciNumbers(document.getElementById('nNumbersIn').value);
     const intervals = fibonacci.intervalFibonacci(document.getElementById('intervalMinIn').value, document.getElementById('intervalMaxIn').value);
     document.getElementById('fibonacciOut').value = fibonacci.fibNumbers;
-    document.getElementById('isFibonacciOut').value = fibonacci.isFibonacci(document.getElementById('numberIn').value);
-    document.getElementById('intervalOut').value = intervals[0];
-    document.getElementById('intervalPrimeOut').value = intervals[1];
-    document.getElementById('results').style.cssText = 'opacity: 1; transform: scaleX(1)';
+    if (fibonacci.isFibonacci(document.getElementById('numberIn').value)) {
+      document.getElementById('isFibonacciOut').value = 'This is not Fibonacci number'
+    } else {
+      document.getElementById('isFibonacciOut').value = 'It seems to be Fibonacci number'
+    }
+    document.getElementById('intervalOut').value = intervals.intervalFibonacci;
+    document.getElementById('intervalPrimeOut').value = intervals.intervalFibonacciPrime;
   });
 })

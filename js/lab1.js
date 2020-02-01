@@ -28,9 +28,9 @@ class Calculator {
         gap,
         quality: (quality * 100 / this.marks.length).toFixed(2),
         average: (sum / this.marks.length).toFixed(3)
-      };
+      }
     }
-  }
+  };
 
   mergeSort(arrToSort) {
     if (arrToSort.length < 2) {
