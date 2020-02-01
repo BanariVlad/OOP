@@ -15,7 +15,8 @@ section {
   justify-items: center;
 }
 
-section input, section button {
+section input,
+section button {
   height: 30px;
   width: 250px;
   border-radius: 20px;
@@ -34,7 +35,7 @@ section button {
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 #results {
@@ -43,7 +44,7 @@ section button {
   opacity: 0;
   transform: scaleX(0);
   transform-origin: left;
-  justify-self: left;
+  justify-self: center;
 }
 
 #results li {
@@ -67,10 +68,15 @@ label {
   color: #666666;
   cursor: pointer;
   border-radius: 20px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 label:hover {
   border: 1px solid #000;
   color: #000;
+}
+
+section #calculate:focus + #results {
+  opacity: 1;
+  transform: scaleX(1);
 }

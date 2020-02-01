@@ -37,7 +37,6 @@ class CustomString {
   }
 }
 
-
 class FileString {
   fileWordCount(input) {
     const reader = new FileReader();
@@ -47,5 +46,5 @@ class FileString {
     }
     reader.readAsText(input.files[0]);
   }
-
+ 
 }
