@@ -76,7 +76,7 @@ label:hover {
   color: #000;
 }
 
-section #calculate:focus + #results {
+#addLine:focus + #results {
   opacity: 1;
   transform: scaleX(1);
 }

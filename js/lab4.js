@@ -15,36 +15,47 @@ class CustomArray {
   };
 
   getMinMax() {
-    let min = 100;
-    let max = [0][0];
-    let positionMin = '';
-    let positionMax = '';
+    let min = this.array[0][0];
+    let max = this.array[0][0];
+    let positionMin = {
+      row: 0,
+      column: 0
+    };
+    let positionMax = {
+      row: 0,
+      column: 0
+    };
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.columns; j++) {
         if (min > this.array[i][j]) {
           min = this.array[i][j];
-          positionMin = `row ${i + 1} column ${j + 1}`;
+          positionMin = {
+            row: i + 1,
+            column: i + 1
+          }
         }
         if (max <= this.array[i][j]) {
           max = this.array[i][j];
-          positionMax = `row ${i + 1} column ${j + 1}`;
+          positionMax = {
+            row: i + 1,
+            column: i + 1
+          }
         }
       }
     }
-    return [min, max, positionMin, positionMax];
+    return {
+      min,
+      max,
+      positionMin,
+      positionMax
+    }
   };
 
   swapLines(firstLine, secondLine) {
     let copyFirstLine = this.copyLine(firstLine);
     let copySecondLine = this.copyLine(secondLine);
-
-    for (let i = 0; i < this.rows; i++) {
-      for (let j = 0; j < this.columns; j++) {
-        this.array[firstLine] = copySecondLine;
-        this.array[secondLine] = copyFirstLine;
-      }
-    }
-    this.printArray();
+    this.array[firstLine] = copySecondLine;
+    this.array[secondLine] = copyFirstLine;
   };
 
   addLine() {
@@ -53,7 +64,7 @@ class CustomArray {
       line[i] = this.array.length + 1
     }
     this.array[this.array.length] = line;
-    this.printArray();
+    return this.array;
   };
 
   sortBy() {
@@ -94,43 +105,33 @@ document.addEventListener('DOMContentLoaded', function () {
   let twoDimensionalArray = new CustomArray(document.getElementById('rowsIn').value, document.getElementById('columnsIn').value)
   twoDimensionalArray.createArray();
 
-  document.getElementById('createArray').addEventListener('click', function () {
-    showResults();
-  });
-
   document.getElementById('getMinMax').addEventListener('click', function () {
     const getMinMax = twoDimensionalArray.getMinMax();
-    document.getElementById('minOut').value = getMinMax[0];
-    document.getElementById('maxOut').value = getMinMax[1];
-    document.getElementById('positionMinOut').value = getMinMax[2];
-    document.getElementById('positionMaxOut').value = getMinMax[3];
-
-    showResults();
-    document.getElementById('getMinMax').style.cssText = 'opacity: 1; transform: scaleX(1)'
+    document.getElementById('minOut').value = getMinMax.min;
+    document.getElementById('maxOut').value = getMinMax.max;
+    document.getElementById('positionMinOut').value = getMinMax.positionMin.row + " " + getMinMax.positionMin.column;
+    document.getElementById('positionMaxOut').value = getMinMax.positionMax.row + " " + getMinMax.positionMax.column;
   });
 
   document.getElementById('swapLines').addEventListener('click', function () {
+    clearResults();
     twoDimensionalArray.swapLines(0, 2);
-    showResults();
+    twoDimensionalArray.printArray();
   });
 
   document.getElementById('addLine').addEventListener('click', function () {
     clearResults();
     twoDimensionalArray.addLine();
-    showResults();
+    twoDimensionalArray.printArray();
   });
 
   document.getElementById('sortArray').addEventListener('click', function () {
     clearResults();
     twoDimensionalArray.sortBy();
-    showResults();
-  })
+    twoDimensionalArray.printArray();
+  });
+
+  const clearResults = () => {
+    document.getElementById('results').innerHTML = '';
+  }
 })
-
-const showResults = () => {
-  document.getElementById('results').style.cssText = 'opacity: 1; transform: scaleX(1)';
-}
-
-const clearResults = () => {
-  document.getElementById('results').innerHTML = '';
-}
