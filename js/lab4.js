@@ -71,10 +71,8 @@ class CustomArray {
     this.array[this.array.length] = [];
     for (let index = 0; index < this.array.length - 1; index++) {
       for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.columns; j++) {
-          if (this.array[i][j] < this.array[i + 1][j]) {
-            this.swapLines(i, i + 1);
-          }
+        if (this.array[i] < this.array[i + 1]) {
+          this.swapLines(i, i + 1);
         }
       }
     }
@@ -89,7 +87,7 @@ class CustomArray {
       }
     }
     return copy;
-  }
+  };
 
   printArray() {
     for (let i = 0; i < this.array.length; i++) {
